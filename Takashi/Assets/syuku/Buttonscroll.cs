@@ -1,25 +1,46 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Buttonscroll : MonoBehaviour
 {
-    public GameObject objectTomove;//ˆÚ“®‚³‚¹‚½‚¢ƒIƒuƒWƒFƒNƒg
-    public Vector3 moveAmount;// ƒ{ƒ^ƒ“‚ğ‰Ÿ‚·‚²‚Æ‚ÉˆÚ“®‚·‚é—Ê
+    public GameObject objectToMove;        // ç§»å‹•ã•ã›ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+    public Vector3 moveAmount = new Vector3(0, 1.823f, 0); // ç§»å‹•é‡ï¼ˆä¾‹ï¼šYæ–¹å‘ã«+100ï¼‰
+    public float moveDuration = 0.5f;      // ç§»å‹•æ™‚é–“ï¼ˆç§’ï¼‰
+
+    private bool isMoving = false;
 
     public void Move()
     {
-        if(objectTomove != null) 
+        if (objectToMove != null && !isMoving)
         {
-            //ƒIƒuƒWƒFƒNƒg‚ÌÀ•W‚ğˆÚ“®‚³‚¹‚é
-            objectTomove.transform.position += moveAmount;
-            Debug.Log($"ƒIƒuƒWƒFƒNƒg‚ªˆÚ“®‚µ‚Ü‚µ‚½: {objectTomove.transform.position}");
-        
+            StartCoroutine(SmoothMove());
         }
-        else 
+        else if (objectToMove == null)
         {
-            Debug.LogError("ˆÚ“®‚³‚¹‚éƒIƒuƒWƒFƒNƒg‚ªw’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+            Debug.LogError("ç§»å‹•å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
         }
     }
 
+    private IEnumerator SmoothMove()
+    {
+        isMoving = true;
+
+        Vector3 startPos = objectToMove.transform.position;
+        Vector3 endPos = startPos + moveAmount;
+
+        float elapsed = 0f;
+
+        while (elapsed < moveDuration)
+        {
+            float t = elapsed / moveDuration;
+            objectToMove.transform.position = Vector3.Lerp(startPos, endPos, t);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        objectToMove.transform.position = endPos;
+        Debug.Log($"ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ã‚¹ãƒ©ã‚¤ãƒ‰ç§»å‹•ã—ã¾ã—ãŸ: {endPos}");
+
+        isMoving = false;
+    }
 }

@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class ButtonScript : MonoBehaviour
 {
-    
-
-    //¶¬‚µ‚½‚¢Prefab‚ğInspector‚©‚çİ’è‚·‚é•Ï”
+    // ç”Ÿæˆã™ã‚‹Prefabã‚’Inspectorã§è¨­å®šã™ã‚‹å¤‰æ•°
     public GameObject objectTospawn;
-    //ƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚éˆÊ’u
+
+    // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹ä½ç½®
     public Vector3 spawnPosition;
 
     public void spawnobject()
     {
-        //objectTospawn‚ªİ’è‚³‚ê‚Ä‚¢‚é‚©Šm”F
-        if(objectTospawn != null) 
+        // objectTospawnãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ã‹ç¢ºèª
+        if (objectTospawn != null)
         {
-            //w’è‚µ‚½ˆÊ’u‚ÉƒIƒuƒWƒFƒNƒg‚ğì¬
+            // æŒ‡å®šã—ãŸä½ç½®ã«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
             Instantiate(objectTospawn, transform);
         }
-        else 
+        else
         {
-            Debug.LogError("¶¬‚·‚éƒIƒuƒWƒFƒNƒg‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñI");
+            Debug.LogError("ç”Ÿæˆã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ï¼");
         }
     }
 }

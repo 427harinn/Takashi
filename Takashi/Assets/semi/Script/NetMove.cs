@@ -17,11 +17,11 @@ public class NetMove : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (is_move)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPsision, 3.0f);
+            transform.position = Vector3.MoveTowards(transform.position, targetPsision, 5.0f);
 
         }
 

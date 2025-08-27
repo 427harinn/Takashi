@@ -6,6 +6,45 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Start/StartScene.unity
+    guid: 371d4dbb3bdfb447dbfd58c530bb320f
+  - enabled: 1
     path: Assets/kingyo/kingyoScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/info/Suikawari_info.unity
+    guid: d2f3018dcfd104a7596fa4954b0b4c12
+  - enabled: 1
+    path: Assets/suikawari/suikaScene.unity
+    guid: 0e2b26cd2bd404aff85aea5b5508f49b
+  - enabled: 1
+    path: Assets/CountDown/CountDownScene.unity
+    guid: b590ef3501ab944779bbd1bcbdd3075e
+  - enabled: 1
+    path: Assets/nikki/nikki_homework.unity
+    guid: 63d1edc99b6754eec8f4a04855307ee3
+  - enabled: 1
+    path: Assets/Gaku Fujii/SomenScene.unity
+    guid: 1fc3a6682fa68405e8dbcaf38bf7e267
+  - enabled: 1
+    path: Assets/semi/semiScene.unity
+    guid: 1f6f2a67427414a8e9aa702d7dbdb3c4
+  - enabled: 1
+    path: Assets/info/semi_info.unity
+    guid: 751e992fd9a8849189f95e0d7861562f
+  - enabled: 1
+    path: Assets/nikki/nikki_kingyo.unity
+    guid: 8bb503bf52f944c83b02e67f692f35e9
+  - enabled: 1
+    path: Assets/nikki/nikki_suika.unity
+    guid: 124f6d4896e36472586a36c09f4fde3d
+  - enabled: 1
+    path: Assets/nikki/nikki_semi.unity
+    guid: 87b88bf0321204bd894fd23671acfbac
+  - enabled: 1
+    path: Assets/info/somen_info.unity
+    guid: d1d6b4d8aa7154352996d39920b58b43
+  - enabled: 1
+    path: Assets/syuku/syuku.unity
+    guid: 78f9d031bbd054860b64651707b64d43
   m_configObjects: {}

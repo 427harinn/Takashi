@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         current_somen_ = 0;
 
         score_ = 0;
-        score_text_.text = score_.ToString();
+        //score_text_.text = score_.ToString();
     }
 
     // Update is called once per frame

@@ -1,33 +1,48 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BouScript : MonoBehaviour
 {
     [Header("自動移動設定")]
-    public float speed = 5f;             // 移動速度（大きいほど速く往復）
-    public float moveRange = 3f;         // 中心からの左右移動距離（±）
+    public float initialSpeed = 18f;        // 最初は速く
+    public float minSpeed = 3f;             // 最低速度（これ以下にはならない）
+    public float slowdownDuration = 20f;    // 何秒かけて遅くなるか
+    public float moveRange = 3f;
 
     [Header("スコア判定")]
-    public Transform targetCenter;       // 判定用（スイカ中心）
+    public Transform targetCenter;
     public float perfectRange = 0.2f;
-    public float goodRange = 0.5f;
     public Text scoreText;
 
-    private int totalScore = 0;
+    [SerializeField] private GameObject[] hitobj;
+    private AudioSource audioSource;
+    public AudioSource bgm;
+
     private float centerX;
+    private float gameStartTime;
+    private bool isMoving = true;
+    private float currentSpeed;
 
     void Start()
     {
-        // 初期位置を中心として記録
         centerX = transform.position.x;
+        audioSource = GetComponent<AudioSource>();
+        gameStartTime = Time.time;
+        currentSpeed = initialSpeed;
     }
 
     void Update()
     {
-        // 自動で高速往復（Sin波）
-        float x = centerX + Mathf.Sin(Time.time * speed) * moveRange;
-        transform.position = new Vector3(x, transform.position.y, transform.position.z);
+        if (!isMoving) return;
 
+        // 時間経過に応じて速度を減衰させる
+        float elapsed = Time.time - gameStartTime;
+        float t = Mathf.Clamp01(elapsed / slowdownDuration);
+        currentSpeed = Mathf.Lerp(initialSpeed, minSpeed, t);
+
+        float x = centerX + Mathf.Sin(Time.time * currentSpeed) * moveRange;
+        transform.position = new Vector3(x, transform.position.y, transform.position.z);
     }
 
     public void Hit()
@@ -38,33 +53,65 @@ public class BouScript : MonoBehaviour
             return;
         }
 
-        float dx = Mathf.Abs(transform.position.x - targetCenter.position.x);
-        string result;
-        int score;
+        isMoving = false;
 
+        // 共通処理
+        float elapsedTime = Time.time - gameStartTime;
+        float dx = Mathf.Abs(transform.position.x - targetCenter.position.x);
+
+        // 時間のスコア補正係数（例：5秒以内で100%、10秒で50%、20秒以上は20%）
+        float timeMultiplier = Mathf.Clamp01(1f - (elapsedTime / 20f));
+        float timeScoreRate = Mathf.Lerp(0.2f, 1f, timeMultiplier); // 0.2〜1.0の補正
+
+        int baseScore;
+        string result;
+
+        // 中心との距離でスコア決定
         if (dx <= perfectRange)
         {
-            result = "PERFECT!";
-            score = 100;
+            baseScore = 100;
+            result = "じゃーん";
+            hitobj[2].SetActive(true);
         }
-        else if (dx <= goodRange)
+        else if (dx <= perfectRange + 0.1f)
         {
-            result = "GOOD!";
-            score = 60;
+            baseScore = 90;
+            result = "じゃーん";
+            hitobj[2].SetActive(true);
+        }
+        else if (dx <= perfectRange + 0.2f)
+        {
+            baseScore = 80;
+            result = "ぱかっ";
+            hitobj[1].SetActive(true);
         }
         else
         {
-            result = "MISS...";
-            score = 0;
+            baseScore = 70;
+            result = "ぱかっ";
+            hitobj[1].SetActive(true);
         }
 
-        totalScore += score;
+        int finalScore = Mathf.RoundToInt(baseScore * timeScoreRate);
+        GManager.instance.score[GManager.instance.scenenumber - 1] = finalScore;
 
-        Debug.Log($"判定: {result}（距離: {dx:F2}） スコア: {score} 合計: {totalScore}");
+        Debug.Log($"[結果] {result} | 距離: {dx:F2} | 時間: {elapsedTime:F2}s | 補正率: {timeScoreRate:F2} | 最終スコア: {finalScore}");
+
+        // UIや演出
+        hitobj[0].SetActive(false);
+        bgm.enabled = false;
+        audioSource.Play();
 
         if (scoreText != null)
         {
-            scoreText.text = $"Score: {totalScore}\n{result}";
+            scoreText.text = result;
         }
+
+        Invoke("loadscene", 1.0f);
+    }
+
+    void loadscene()
+    {
+        SceneManager.LoadScene("nikki_suika");
     }
 }

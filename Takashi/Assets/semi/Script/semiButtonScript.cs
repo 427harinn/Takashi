@@ -9,19 +9,19 @@ public class semiButtonScript : MonoBehaviour
     // �{�^���������ꂽ�ꍇ�A����Ăяo�����֐�
     public void OnClick()
     {
-        Debug.Log("�����ꂽ!");  // ���O���o��
+        Debug.Log("つかまえた!");  // ���O���o��
         pushButton = true;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

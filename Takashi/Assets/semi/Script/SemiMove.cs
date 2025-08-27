@@ -41,7 +41,7 @@ public class SemiMove : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (!isCry && Time.time > sound.timeElapsed)
         {
