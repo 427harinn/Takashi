@@ -6,59 +6,80 @@ using UnityEngine.UI;
 
 public class Sound : MonoBehaviour
 {
-    public AudioClip sound1;
-    public AudioClip sound2;
+    [SerializeField] private AudioSource source1;
+    [SerializeField] private AudioSource source2;
+    [SerializeField] private AudioSource source3;
+    [SerializeField] private AudioSource source4;
 
-    AudioSource audioSource;
+
+    [SerializeField] private AudioClip crySemi;
+    [SerializeField] private AudioClip moveNet;
+    [SerializeField] private AudioClip getFalse;
+    [SerializeField] private AudioClip getTrue;
+
 
     [SerializeField] SemiMove semi; // SemiMove�X�N���v�g�ւ̎Q��
     [SerializeField] semiButtonScript buttoun; // ButtonScript�X�N���v�g�ւ̎Q��
+    [SerializeField] Timer timer; // ButtonScript�X�N���v�g�ւ̎Q��
+    [SerializeField] SadMove sad; // SadMove�X�N���v�g�ւ̎Q��
 
     bool isPlayed = false;
-    public float timeElapsed = 0.0f;   //�@�Z�~���������܂ł̎���
-    float addRandomTime = 0.0f; // �����_���ɒǉ����鎞��
+    bool isPlayedResult = false;
 
     public void OnClick()
     {
         // �{�^���������ꂽ�Ƃ��̏���
-        audioSource.Stop();
+        source1.Stop();
         // ��(sound2)��炷
-        audioSource.PlayOneShot(sound2);
+        source2.PlayOneShot(moveNet);
     }
 
     // Start is called before the first frame update
     void Start()
     {
         // Component���擾
-        audioSource = GetComponent<AudioSource>();
-        addRandomTime = Random.Range(0.0f, 6.0f); // 0�`5�b�̃����_���Ȏ��Ԃ�ǉ�
-        timeElapsed = Time.time + 5.0f + addRandomTime; // 5�b��ɉ���炷
+        //source1 = GetComponent<AudioSource>();
+        
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        //Debug.Log( "�Đ��J�n����(�b)" + timeElapsed);
-        // ���Ԍo�߂ŉ���炷
-        if (Time.time > timeElapsed && !isPlayed)
+        // 鳴くときの処理
+        if (Time.time > timer.timeElapsed && !isPlayed)
         {
             // ��(sound1)��炷
-            audioSource.PlayOneShot(sound1);
+            source1.PlayOneShot(crySemi);
             isPlayed = true;
         }
 
-        if (Time.time < timeElapsed && buttoun.pushButton && !isPlayed)
+        // 鳴くよりも前に捕まえようとしたときの処理
+        if (Time.time < timer.timeElapsed && buttoun.pushButton && !isPlayed)
         {
-
             // ��(sound1)��炷
-            audioSource.PlayOneShot(sound1);
+            source1.PlayOneShot(crySemi);
             isPlayed = true;
         }
 
+        if (timer.resultTime < Time.time && timer.resultTime != 0.0f && !isPlayedResult)
+        {
+            // 捕まえたときの処理
+            if (semi.isGet)
+            {
+                // ��(sound3)��炷
+                source4.PlayOneShot(getTrue);
+                isPlayedResult = true;
+            }
+            else
+            {
+                // ��(sound2)��炷
+                source3.PlayOneShot(getFalse);
+                isPlayedResult = true;
+                sad.SetMoveFlag(true);
+            }
+        }
 
-        //if(semi.isGet)
-        //{
-        //    audioSource.Stop();
-        //}
+
+
     }
 }

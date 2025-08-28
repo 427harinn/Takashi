@@ -36,14 +36,14 @@ public class SemiMove : MonoBehaviour
     {
         isCry = false;
         isGet = false;
-        shakeSpeed = 0.5f;
+        shakeSpeed = 5.0f;
         targetPsision = new Vector3(-4.0f, 6.0f, 0.0f);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!isCry && Time.time > sound.timeElapsed)
+        if (!isCry && Time.time > timer.timeElapsed)
         {
             isCry = true;
         }
@@ -71,7 +71,7 @@ public class SemiMove : MonoBehaviour
         // �{�^�������������߂܂��Ă��Ȃ���������
         if (!isGet && button.pushButton)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPsision, 0.3f);
+            transform.position = Vector3.MoveTowards(transform.position, targetPsision, 1.5f);
         }
 
 

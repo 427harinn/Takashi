@@ -21,7 +21,7 @@ public class NetMove : MonoBehaviour
     {
         if (is_move)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPsision, 5.0f);
+            transform.position = Vector3.MoveTowards(transform.position, targetPsision, 10.0f);
 
         }
 

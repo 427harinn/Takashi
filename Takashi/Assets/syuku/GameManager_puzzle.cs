@@ -110,11 +110,24 @@ public class GameManager_puzzle : MonoBehaviour
 
         finishflag = true;
         finishUI.SetActive(true);
-        Invoke("loadscene", 2f);
+        if (GManager.instance.scoreattack)
+        {
+            Invoke("sceneload2", 2f);
+        }
+        else
+        {
+            Invoke("loadscene", 2f);
+        }
     }
 
     public void loadscene()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("nikki_syuku");
+    }
+
+    public void sceneload2()
+    {
+        GManager.instance.scenenumber = 6;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("resultScene");
     }
 }

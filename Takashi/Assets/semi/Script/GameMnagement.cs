@@ -10,7 +10,18 @@ public class TextSemi : MonoBehaviour
 {
     [SerializeField] Text KeyText;
     [SerializeField] Timer timer;              // Timerスクリプトへの参照
+    [SerializeField] kirakriaMove kirakira;              // Timerスクリプトへの参照
+
     [SerializeField] GameObject result_text;   // 結果表示用のテキスト
+
+    Vector3 targetPsision;
+    bool is_move = false;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        targetPsision = new Vector3(0.0f, 2.5f, 0.0f);
+    }
 
     // Update is called once per frame
     void Update()
@@ -19,9 +30,8 @@ public class TextSemi : MonoBehaviour
         if (timer.resultTime < Time.time && timer.resultTime != 0.0f)
         {
             result_text.SetActive(true);
-
+            is_move = true;
             int score = 0;
-
             if (timer.cryToClickInterval > 0)
             {
                 // スコア判定
@@ -50,9 +60,13 @@ public class TextSemi : MonoBehaviour
 
                 // 表示
                 KeyText.text = interval.ToString("N3") + "秒";
+                result_text.transform.position = Vector3.MoveTowards(result_text.transform.position, targetPsision, 0.5f);
+
+                kirakira.SetMoveFlag(true);
             }
             else
             {
+                KeyText.color = new Color(0, 1, 1, 1); ;
                 KeyText.text = "ざんねん....";
                 score = 0;
             }
@@ -64,23 +78,34 @@ public class TextSemi : MonoBehaviour
                 GManager.instance.score[index] = score;
             }
 
-            // 1秒後にシーン遷移
-            Invoke("loadscene", 1.0f);
+            if (GManager.instance.scoreattack)
+            {
+                Invoke("loadscene2", 1.0f);
+            }
+            else
+            {
+                // 1秒後にシーン遷移
+                Invoke("loadscene", 1.0f);
+            }
+
         }
 
         // ゲーム終了タイム
         if (timer.gameEndTime < Time.time)
         {
-#if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
+
         }
     }
 
     public void loadscene()
     {
         SceneManager.LoadScene("nikki_semi");
+    }
+
+    public void loadscene2()
+    {
+        GManager.instance.scenenumber = 3;
+        SceneManager.LoadScene("SomenScene");
     }
 }

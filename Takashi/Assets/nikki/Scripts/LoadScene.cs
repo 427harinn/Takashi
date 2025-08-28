@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class LoadScene : MonoBehaviour
 {
+
+    AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -18,7 +20,8 @@ public class LoadScene : MonoBehaviour
 
     public void finishAnim()
     {
-        Invoke("sceneload", 1.0f);
+        audioSource.Play();
+        Invoke("sceneload", 0.5f);
     }
 
     public void sceneload()
@@ -40,6 +43,10 @@ public class LoadScene : MonoBehaviour
         else if (GManager.instance.scenenumber == 5)
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("syuku_info");
+        }
+        else if (GManager.instance.scenenumber == 6)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("resultScene");
         }
     }
 }

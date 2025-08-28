@@ -113,7 +113,15 @@ public class Poi : MonoBehaviour
                 this.GetComponent<Image>().sprite = biriImage;
                 finishUI.SetActive(true);
                 isBiri = true;
-                Invoke("loadscene", 2f);
+                if (GManager.instance.scoreattack)
+                {
+                    Invoke("loadscene2", 2f);
+                }
+                else
+                {
+                    Invoke("loadscene", 2f);
+                }
+
                 return;
             }
         }
@@ -124,6 +132,12 @@ public class Poi : MonoBehaviour
     public void loadscene()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("nikki_kingyo");
+    }
+
+    public void loadscene2()
+    {
+        GManager.instance.scenenumber = 5;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("syuku");
     }
 
 }

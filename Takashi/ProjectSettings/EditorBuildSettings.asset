@@ -18,8 +18,17 @@ EditorBuildSettings:
     path: Assets/suikawari/suikaScene.unity
     guid: 0e2b26cd2bd404aff85aea5b5508f49b
   - enabled: 1
+    path: Assets/info/kingyo_info.unity
+    guid: 1300dbee61c5b400191f4bf4a047f420
+  - enabled: 1
+    path: Assets/result/resultScene.unity
+    guid: c7ddeb9647a114e20b2f228a550a0fbc
+  - enabled: 1
     path: Assets/CountDown/CountDownScene.unity
     guid: b590ef3501ab944779bbd1bcbdd3075e
+  - enabled: 1
+    path: Assets/nikki/nikki_soumen.unity
+    guid: 391aeb9bbb4cc4e2ea5c9e9939befdd0
   - enabled: 0
     path: Assets/nikki/nikki_homework.unity
     guid: 63d1edc99b6754eec8f4a04855307ee3
