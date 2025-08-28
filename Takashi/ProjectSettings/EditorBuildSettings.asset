@@ -20,12 +20,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/CountDown/CountDownScene.unity
     guid: b590ef3501ab944779bbd1bcbdd3075e
-  - enabled: 1
+  - enabled: 0
     path: Assets/nikki/nikki_homework.unity
     guid: 63d1edc99b6754eec8f4a04855307ee3
   - enabled: 1
+    path: Assets/info/syuku_info.unity
+    guid: df42fd9edc4b140c3be3ef8087e9a1e7
+  - enabled: 1
     path: Assets/Gaku Fujii/SomenScene.unity
     guid: 1fc3a6682fa68405e8dbcaf38bf7e267
+  - enabled: 1
+    path: Assets/nikki/nikki_syuku.unity
+    guid: db4a29c2a9063491cb8ac0ff0549a05a
   - enabled: 1
     path: Assets/semi/semiScene.unity
     guid: 1f6f2a67427414a8e9aa702d7dbdb3c4

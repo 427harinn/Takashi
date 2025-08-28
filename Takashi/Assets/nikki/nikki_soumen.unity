@@ -209,7 +209,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u3057\u3085\u304F\u3060\u3044\u3092\u3057\u305F"
+  m_Text: "\u306A\u304C\u3057\u305D\u3046\u3081\u3093"
 --- !u!222 &6492679
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -625,7 +625,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u304C\u3093\u3070\u3063\u305F"
+  m_Text: "\u304A\u3044\u3057\u304B\u3063\u305F\u306A"
 --- !u!222 &591333449
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -645,6 +645,7 @@ GameObject:
   - component: {fileID: 947745426}
   - component: {fileID: 947745427}
   - component: {fileID: 947745428}
+  - component: {fileID: 947745429}
   m_Layer: 5
   m_Name: nikkiText
   m_TagString: Untagged
@@ -795,6 +796,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &947745429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 947745425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883d252243688415391d72beeb0da7bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1185757316
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,7 +895,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u3068\u3063\u3066\u3082"
+  m_Text: "\u3092\u305F\u3079\u305F"
 --- !u!222 &1185757320
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -903,6 +916,7 @@ GameObject:
   - component: {fileID: 1293520834}
   - component: {fileID: 1293520833}
   - component: {fileID: 1293520832}
+  - component: {fileID: 1293520836}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -995,6 +1009,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1293520836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293520831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ce1e1d73c93409ebd0f1ff065afa75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoretext: {fileID: 116685199}
 --- !u!1 &1531268970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1082,7 +1109,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u304D\u3087\u3046\u306F\u304A\u3046\u3061\u3067"
+  m_Text: "\u304D\u3087\u3046\u306F\u3084\u307E\u3067"
 --- !u!222 &1531268974
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1091,6 +1118,71 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1531268970}
   m_CullTransparentMesh: 1
+--- !u!1001 &1590590827
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5548151082033654854, guid: c1f0942964a8b4254ac3c9afa9c5cf16, type: 3}
+      propertyPath: m_Name
+      value: GManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607104970585861496, guid: c1f0942964a8b4254ac3c9afa9c5cf16, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 563.8939
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607104970585861496, guid: c1f0942964a8b4254ac3c9afa9c5cf16, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1037.2253
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607104970585861496, guid: c1f0942964a8b4254ac3c9afa9c5cf16, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 253512.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607104970585861496, guid: c1f0942964a8b4254ac3c9afa9c5cf16, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607104970585861496, guid: c1f0942964a8b4254ac3c9afa9c5cf16, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607104970585861496, guid: c1f0942964a8b4254ac3c9afa9c5cf16, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607104970585861496, guid: c1f0942964a8b4254ac3c9afa9c5cf16, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607104970585861496, guid: c1f0942964a8b4254ac3c9afa9c5cf16, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607104970585861496, guid: c1f0942964a8b4254ac3c9afa9c5cf16, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607104970585861496, guid: c1f0942964a8b4254ac3c9afa9c5cf16, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7902989821467835441, guid: c1f0942964a8b4254ac3c9afa9c5cf16, type: 3}
+      propertyPath: scenenumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7902989821467835441, guid: c1f0942964a8b4254ac3c9afa9c5cf16, type: 3}
+      propertyPath: score.Array.data[0]
+      value: 30
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c1f0942964a8b4254ac3c9afa9c5cf16, type: 3}
 --- !u!1 &1600436744
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,7 +1345,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u3080\u305A\u304B\u3057\u304B\u3063\u305F"
+  m_Text: "\u3064\u308B\u3064\u308B\u3067"
 --- !u!222 &1664097666
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1441,7 +1533,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u516B\u6708\u4E8C\u5341\u4E00\u65E5"
+  m_Text: "\u516B\u6708\u5341\u4E5D\u65E5"
 --- !u!222 &1849627661
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1507,7 +1599,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 901f98454c42a4f75bcec901a001ff14, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0d6df8e451886463082a8aa299910841, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1532,3 +1624,4 @@ SceneRoots:
   - {fileID: 1753355638}
   - {fileID: 1293520835}
   - {fileID: 263483962}
+  - {fileID: 1590590827}

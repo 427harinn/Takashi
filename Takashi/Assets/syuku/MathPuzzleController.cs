@@ -21,6 +21,7 @@ public class MathPuzzleController : MonoBehaviour
 
     public int CurrentAnswer => answerValue;
 
+
     private void Start()
     {
         // 自分をGameManagerに登録（最後に生成されたものが有効）
@@ -30,6 +31,7 @@ public class MathPuzzleController : MonoBehaviour
 
     public void GeneratePuzzle()
     {
+        GameManager_puzzle.Instance.nowNumber += 1; // nowNumberを1にリセット
         operatorSymbol = Random.value > 0.5f ? "+" : "-";
 
         if (operatorSymbol == "+")

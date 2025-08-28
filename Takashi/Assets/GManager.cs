@@ -11,6 +11,8 @@ public class GManager : MonoBehaviour
 
     public int scenenumber = 0;
 
+    public bool scoreattack = false;
+
     private void Awake()
     {
         if (instance == null)

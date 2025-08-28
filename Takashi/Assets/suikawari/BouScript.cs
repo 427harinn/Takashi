@@ -107,11 +107,20 @@ public class BouScript : MonoBehaviour
             scoreText.text = result;
         }
 
-        Invoke("loadscene", 1.0f);
+        if (GManager.instance.scoreattack)
+            Invoke("loadscene2", 2.0f);
+        else
+            Invoke("loadscene", 1.0f);
     }
 
     void loadscene()
     {
         SceneManager.LoadScene("nikki_suika");
+    }
+
+    void loadscene2()
+    {
+        GManager.instance.scenenumber = 2;
+        SceneManager.LoadScene("semiScene");
     }
 }

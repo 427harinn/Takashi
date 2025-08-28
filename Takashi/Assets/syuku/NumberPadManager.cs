@@ -55,6 +55,7 @@ public class NumberPadManager : MonoBehaviour
                 correctEffect.SetActive(true);
 
             currentInput = "";
+            GameManager_puzzle.Instance.correctAnswers += 1;
         }
         else if (currentInput.Length >= 1)
         {

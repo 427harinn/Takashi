@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(CircleCollider2D))]
@@ -84,15 +85,45 @@ public class Poi : MonoBehaviour
             Debug.Log($"今回の最大ダメージ={finalDamage:F2}、残り耐久={durability:F2}");
             if (durability <= 0)
             {
+                if (hitCount >= 25)
+                {
+                    GManager.instance.score[GManager.instance.scenenumber - 1] = 100;
+                }
+                else if (hitCount >= 20)
+                {
+                    GManager.instance.score[GManager.instance.scenenumber - 1] = 90;
+                }
+                else if (hitCount >= 15)
+                {
+                    GManager.instance.score[GManager.instance.scenenumber - 1] = 80;
+                }
+                else if (hitCount >= 10)
+                {
+                    GManager.instance.score[GManager.instance.scenenumber - 1] = 70;
+                }
+                else if (hitCount >= 5)
+                {
+                    GManager.instance.score[GManager.instance.scenenumber - 1] = 50;
+                }
+                else
+                {
+                    GManager.instance.score[GManager.instance.scenenumber - 1] = 20;
+                }
                 poiSE.PlayOneShot(biri);
                 this.GetComponent<Image>().sprite = biriImage;
                 finishUI.SetActive(true);
                 isBiri = true;
+                Invoke("loadscene", 2f);
                 return;
             }
         }
 
         poiSE.PlayOneShot(pichan);
+    }
+
+    public void loadscene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("nikki_kingyo");
     }
 
 }

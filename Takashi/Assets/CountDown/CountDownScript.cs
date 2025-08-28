@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class CountDownScript : MonoBehaviour
@@ -18,6 +19,13 @@ public class CountDownScript : MonoBehaviour
 
     public void SceneLoad()
     {
+
+        if (GManager.instance.scoreattack)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("suikaScene");
+            return;
+        }
+
         if (GManager.instance.scenenumber == 1)
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("suikaScene");
