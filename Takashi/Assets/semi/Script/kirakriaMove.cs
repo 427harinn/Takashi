@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class kirakriaMove : MonoBehaviour
 {
-    [SerializeField] GameObject kirakira1;   // Œ‹‰Ê•\Ž¦—p‚ÌƒeƒLƒXƒg
-    [SerializeField] GameObject kirakira2;   // Œ‹‰Ê•\Ž¦—p‚ÌƒeƒLƒXƒg
+    [SerializeField] GameObject kirakira1;   // ï¿½ï¿½ï¿½Ê•\ï¿½ï¿½ï¿½pï¿½Ìƒeï¿½Lï¿½Xï¿½g
+    [SerializeField] GameObject kirakira2;   // ï¿½ï¿½ï¿½Ê•\ï¿½ï¿½ï¿½pï¿½Ìƒeï¿½Lï¿½Xï¿½g
     Vector3 targetPsision1;
     Vector3 targetPsision2;
 
@@ -25,14 +25,14 @@ public class kirakriaMove : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if(is_move)
+        if (is_move)
         {
-            kirakira1.transform.position = Vector3.MoveTowards(kirakira1.transform.position, targetPsision1, 0.5f);
-            kirakira2.transform.position = Vector3.MoveTowards(kirakira2.transform.position, targetPsision2, 0.5f);
+            kirakira1.transform.position = Vector3.MoveTowards(kirakira1.transform.position, targetPsision1, 5.0f);
+            kirakira2.transform.position = Vector3.MoveTowards(kirakira2.transform.position, targetPsision2, 5.0f);
         }
-       
+
 
     }
 }

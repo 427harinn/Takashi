@@ -33,6 +33,12 @@ public class StartButtonScript : MonoBehaviour
         Invoke("CountDownScene", 0.5f);
     }
 
+    public void OnClick3()
+    {
+        audioSource.Play();
+        Invoke("AlbumScene", 0.5f);
+    }
+
     public void sceneload()
     {
         SceneManager.LoadScene("suikawari_info");
@@ -40,5 +46,10 @@ public class StartButtonScript : MonoBehaviour
     public void CountDownScene()
     {
         SceneManager.LoadScene("CountDownScene");
+    }
+
+    public void AlbumScene()
+    {
+        SceneManager.LoadScene("Collection");
     }
 }

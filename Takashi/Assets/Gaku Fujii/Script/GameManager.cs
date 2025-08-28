@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 
 /*
@@ -26,18 +25,22 @@ public class GameManager : MonoBehaviour
 
     public static bool is_game_finished_ = false;   /// @brief 
     bool is_generate_ = false;                  /// @brief 
+    bool is_play_finished_ = false;                 /// @brief
     bool is_interval_ = false;                  /// @brief 
 
     const int kMaxSomen = 10;              /// @brief 
     int current_generated_somen_ = 0;               /// @brief 
 
     const int kSuccessScore = 12;              /// @brief
-    const int kFailureScore = -12;             /// @brief
+    const int kFailureScore = 12;              /// @brief
     private int score_;                             /// @brief 
 
     // Start is called before the first frame update
     void Start()
     {
+
+
+        is_play_finished_ = false;
         is_game_finished_ = false;
         is_interval_ = false;
         is_generate_ = false;
@@ -56,18 +59,22 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (current_generated_somen_ == kMaxSomen)
+        Debug.Log("IsGameFinished: " + is_game_finished_);
+        if (current_generated_somen_ == kMaxSomen && !is_play_finished_)
         {
-            is_game_finished_ = true;
-            GManager.instance.score[GManager.instance.scenenumber - 1] = GetSomenScore();
             if (GManager.instance.scoreattack)
             {
-                Invoke("sceneload2", 0.5f);
+                GManager.instance.scenenumber = 4;
+                UnityEngine.SceneManagement.SceneManager.LoadScene("kingyoScene");
+                GManager.instance.score[GManager.instance.scenenumber - 1] = GetSomenScore();
             }
             else
             {
-                Invoke("sceneload", 0.5f);
+                UnityEngine.SceneManagement.SceneManager.LoadScene("nikki_soumen");
+                GManager.instance.score[GManager.instance.scenenumber - 1] = GetSomenScore();
             }
+            StartCoroutine(FinishCoroutine());
+            is_play_finished_ = true;
 
         }
 
@@ -75,6 +82,12 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Score: " + score_);
             CalcScore();
+            return;
+        }
+
+        if (is_play_finished_)
+        {
+            Debug.Log("PlayFinished");
             return;
         }
 
@@ -96,10 +109,19 @@ public class GameManager : MonoBehaviour
 
     void GenerateSomen()
     {
-        int value = index_list[current_generated_somen_];
+        int value;
+
+        if (current_generated_somen_ < kMaxSomen)
+        {
+            value = index_list[current_generated_somen_];
+        }
+        else
+        {
+            value = index_list[9];
+        }
 
         somen_instance_ = Instantiate(somen_[value],
-            transform.position, Quaternion.identity);
+                transform.position, Quaternion.identity);
 
         audio_source_.PlayOneShot(fall_se_);
 
@@ -112,6 +134,15 @@ public class GameManager : MonoBehaviour
         is_interval_ = false;
         is_generate_ = false;
     }
+
+    IEnumerator FinishCoroutine()
+    {
+        yield return new WaitForSeconds(2f);
+        is_game_finished_ = true;
+
+
+    }
+
 
     void CalcScore()
     {
@@ -129,30 +160,14 @@ public class GameManager : MonoBehaviour
         score_ = success + failure;
     }
 
-    /// @TODO �X�R�A�͂�������擾���Ă��������I�I��낵�����肢���܂��I�I������
+    /// @TODO スコアはここから取得してください！！よろしくお願いします！！藤井より
     public int GetSomenScore()
     {
         return score_;
     }
 
-    public int GetCurrentGeneratedSomen()
-    {
-        return current_generated_somen_;
-    }
-
-    public bool GetIsSomenGameFinished()
+    public bool GetIsGameFinished()
     {
         return is_game_finished_;
-    }
-
-    public void sceneload()
-    {
-        SceneManager.LoadScene("nikki_soumen");
-    }
-
-    public void sceneload2()
-    {
-        GManager.instance.scenenumber = 4;
-        SceneManager.LoadScene("kingyoScene");
     }
 }

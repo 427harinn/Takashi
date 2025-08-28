@@ -24,7 +24,7 @@ public class TextSemi : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // 結果判定タイム
         if (timer.resultTime < Time.time && timer.resultTime != 0.0f)
@@ -60,12 +60,13 @@ public class TextSemi : MonoBehaviour
 
                 // 表示
                 KeyText.text = interval.ToString("N3") + "秒";
-                result_text.transform.position = Vector3.MoveTowards(result_text.transform.position, targetPsision, 0.5f);
+                result_text.transform.position = Vector3.MoveTowards(result_text.transform.position, targetPsision, 5.0f);
 
                 kirakira.SetMoveFlag(true);
             }
             else
             {
+                result_text.transform.position = Vector3.MoveTowards(result_text.transform.position, targetPsision, 5.0f);
                 KeyText.color = new Color(0, 1, 1, 1); ;
                 KeyText.text = "ざんねん....";
                 score = 0;
@@ -87,13 +88,6 @@ public class TextSemi : MonoBehaviour
                 // 1秒後にシーン遷移
                 Invoke("loadscene", 1.0f);
             }
-
-        }
-
-        // ゲーム終了タイム
-        if (timer.gameEndTime < Time.time)
-        {
-            UnityEditor.EditorApplication.isPlaying = false;
 
         }
     }
